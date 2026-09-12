@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-white/10 pb-12">
           <div className="max-w-sm">
-            <img src="/nmg-logo.svg" alt="Northwest Media Group" className="h-11 w-auto mb-5" />
+            <img src={`${import.meta.env.BASE_URL}nmg-logo.svg`} alt="Northwest Media Group" className="h-11 w-auto mb-5" />
             <p className="text-white/60 text-[15px] leading-relaxed">
               Your complete social media and marketing partner. AI-trained, college-educated
               specialists producing results from day one.

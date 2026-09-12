@@ -72,7 +72,7 @@ export default function About() {
       <section className="bg-light py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-black mb-8">Ready to grow with us?</h2>
-          <Button href="#contact" variant="primary" icon>
+          <Button to="/contact" variant="primary" icon>
             Book a Free Audit
           </Button>
         </div>

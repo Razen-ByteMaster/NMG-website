@@ -44,7 +44,7 @@ export default function HowItWorks() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Button variant="primary" href="#contact" icon>
+          <Button variant="primary" to="/contact" icon>
             Get My Free Team Audit
           </Button>
         </div>

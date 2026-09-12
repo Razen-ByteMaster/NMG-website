@@ -23,7 +23,7 @@ export default function Guarantee() {
         </p>
 
         <div className="mt-8">
-          <Button variant="primary" href="#contact" icon>
+          <Button variant="primary" to="/contact" icon>
             Book a Free Audit
           </Button>
         </div>

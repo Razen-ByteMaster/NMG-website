@@ -35,10 +35,16 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col sm:flex-row gap-4 animate-fadeUp" style={{ animationDelay: '300ms' }}>
-            <Button variant="primary" icon href="#packages">
+            <Button
+              variant="primary"
+              icon
+              onClick={() =>
+                document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
+              }
+            >
               See Our Packages
             </Button>
-            <Button variant="outline" href="#contact">
+            <Button variant="outline" to="/contact">
               Book a Free Audit
             </Button>
           </div>

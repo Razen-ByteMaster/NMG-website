@@ -71,7 +71,7 @@ function PackageCard({ pkg, i }) {
         </div>
         <Button
           variant={popular ? 'primary' : 'dark'}
-          href="#contact"
+          to="/contact"
           icon
           className="w-full justify-center"
         >

@@ -35,7 +35,13 @@ export default function WhyNMG() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button href="#packages" variant="primary" icon>
+          <Button
+            variant="primary"
+            icon
+            onClick={() =>
+              document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
+            }
+          >
             See Our Packages
           </Button>
         </div>

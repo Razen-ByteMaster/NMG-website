@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Briefcase, MapPin, Clock, ArrowRight } from 'lucide-react'
 import SectionLabel from '../components/ui/SectionLabel'
 import Card from '../components/ui/Card'
@@ -77,12 +78,12 @@ export default function Careers() {
                   <Clock className="w-3.5 h-3.5" /> {r.type}
                 </div>
                 <p className="text-slate-600 leading-relaxed mb-5">{r.desc}</p>
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   className="inline-flex items-center gap-2 text-[14px] font-extrabold text-dark-900 hover:text-teal-dark transition-colors"
                 >
                   Apply now <ArrowRight className="w-4 h-4" />
-                </a>
+                </Link>
               </Card>
             ))}
           </div>
@@ -98,7 +99,7 @@ export default function Careers() {
               ))}
             </ul>
             <div className="mt-8">
-              <Button variant="primary" href="#contact" icon>
+              <Button variant="primary" to="/contact" icon>
                 Apply Now
               </Button>
             </div>

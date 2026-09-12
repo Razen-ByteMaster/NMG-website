@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 const styles = {
@@ -16,6 +17,7 @@ export default function Button({
   variant = 'primary',
   icon = false,
   href,
+  to,
   className = '',
   ...rest
 }) {
@@ -24,6 +26,14 @@ export default function Button({
     transition-all duration-300 cursor-pointer select-none whitespace-nowrap
     ${styles[variant] ?? styles.primary} ${className}
   `
+  if (to) {
+    return (
+      <Link to={to} className={classes} {...rest}>
+        {children}
+        {icon && <ArrowRight className="w-[18px] h-[18px]" />}
+      </Link>
+    )
+  }
   if (href) {
     return (
       <a href={href} className={classes} {...rest}>

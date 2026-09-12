@@ -46,7 +46,13 @@ export default function ServicesGrid() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button variant="dark" href="#packages" icon>
+          <Button
+            variant="dark"
+            icon
+            onClick={() =>
+              document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
+            }
+          >
             See What We Offer
           </Button>
         </div>

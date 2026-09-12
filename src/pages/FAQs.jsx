@@ -86,7 +86,7 @@ export default function FAQs() {
           <div className="mt-12 text-center">
             <h2 className="text-2xl font-black mb-2">Still have questions?</h2>
             <p className="text-slate-600 mb-6">We’d love to walk you through everything.</p>
-            <Button variant="primary" href="#contact" icon>
+            <Button variant="primary" to="/contact" icon>
               Contact Us
             </Button>
           </div>

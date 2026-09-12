@@ -18,7 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-dark-900/95 backdrop-blur border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-2 shrink-0">
-          <img src="/nmg-logo.svg" alt="Northwest Media Group" className="h-11 w-auto" />
+          <img src={`${import.meta.env.BASE_URL}nmg-logo.svg`} alt="Northwest Media Group" className="h-11 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -38,7 +38,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="#contact" variant="primary" icon>
+          <Button to="/contact" variant="primary" icon>
             Book a Free Audit
           </Button>
         </div>
@@ -68,7 +68,7 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
-          <Button href="#contact" className="w-full justify-center mt-2">
+          <Button to="/contact" className="w-full justify-center mt-2">
             Book a Free Audit
           </Button>
         </div>
