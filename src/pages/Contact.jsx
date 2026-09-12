@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Mail, MapPin, Phone, Send } from 'lucide-react'
-import SectionLabel from '../components/ui/SectionLabel'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 
@@ -23,46 +22,51 @@ const info = [
 ]
 
 const inputClass =
-  'w-full bg-light border border-slate-200 rounded-xl px-4 py-3.5 outline-none focus:border-teal-nmg focus:ring-2 focus:ring-teal-nmg/20 transition-all text-[15px]'
+  'w-full bg-ink border border-white/15 rounded-sm px-4 py-3.5 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all text-[15px] text-cream placeholder:text-cream/30'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
 
   return (
     <>
-      <section className="bg-dark-900 text-white py-20 md:py-24">
+      <section className="bg-ink text-cream py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <SectionLabel light>Contact</SectionLabel>
-          <h1 className="text-4xl md:text-5xl font-black leading-tight max-w-3xl">
-            Book Your <span className="text-teal-nmg">Free Audit</span>
+          <div className="text-[13px] font-bold tracking-[0.3em] text-gold/70 mb-3">CONTACT</div>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold uppercase tracking-wide leading-tight max-w-3xl">
+            Book your <span className="text-gold">free audit</span>
           </h1>
-          <p className="mt-6 text-lg text-white/75 max-w-2xl">
-            Tell us about your business and we’ll show you exactly how NMG can grow your online
-            presence — within 48 hours.
+          <p className="mt-6 text-lg text-cream/60 max-w-2xl">
+            Tell us about your business and we’ll show you exactly how NMG can grow your presence —
+            within 48 hours.
           </p>
         </div>
       </section>
 
-      <section id="contact" className="bg-white py-20 md:py-28 scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-2 space-y-6">
+      <section id="contact" className="bg-black py-20 md:py-28 border-t border-white/5 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-5 gap-10">
+          <div className="lg:col-span-2 space-y-5">
             {info.map((i) => (
-              <Card key={i.label} className="bg-light rounded-2xl p-7 flex items-start gap-5 border border-slate-100 hover:border-teal-nmg shadow-card">
-                <div className="w-12 h-12 rounded-xl bg-white shadow-card flex items-center justify-center shrink-0">
-                  <i.icon className="w-6 h-6 text-teal-dark" />
+              <Card
+                key={i.label}
+                className="bg-ink-panel rounded-sm p-7 flex items-start gap-5 border border-white/10 hover:border-gold/50"
+              >
+                <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0">
+                  <i.icon className="w-6 h-6 text-gold" />
                 </div>
                 <div>
-                  <div className="text-[12px] font-black uppercase tracking-wider text-slate-500 mb-1">
+                  <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-1">
                     {i.label}
                   </div>
-                  <div className="font-bold text-dark-900">{i.value}</div>
+                  <div className="font-bold text-cream">{i.value}</div>
                 </div>
               </Card>
             ))}
 
-            <div className="bg-teal-nmg rounded-2xl p-7 text-dark-900">
-              <h3 className="font-black text-lg mb-2">Prefer to skip the form?</h3>
-              <p className="text-[15px] font-medium leading-relaxed">
+            <div className="bg-gold rounded-sm p-7 text-ink">
+              <h3 className="font-display font-semibold uppercase tracking-wide text-lg mb-2">
+                Prefer to skip the form?
+              </h3>
+              <p className="text-[15px] font-medium leading-relaxed text-ink/80">
                 Jump straight on a call and we’ll walk you through a custom plan for your goals.
               </p>
             </div>
@@ -70,12 +74,14 @@ export default function Contact() {
 
           <div className="lg:col-span-3">
             {sent ? (
-              <Card className="bg-light rounded-2xl p-12 border border-slate-100 shadow-card text-center">
-                <div className="w-16 h-16 mx-auto rounded-full bg-teal-nmg/15 flex items-center justify-center mb-6">
-                  <Send className="w-8 h-8 text-teal-dark" />
+              <Card className="bg-ink-panel rounded-sm p-12 border border-gold/30 text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center mb-6">
+                  <Send className="w-8 h-8 text-gold" />
                 </div>
-                <h3 className="text-2xl font-black mb-3">Message sent!</h3>
-                <p className="text-slate-600 max-w-md mx-auto">
+                <h3 className="font-display text-2xl font-semibold uppercase tracking-wide mb-3">
+                  Message sent
+                </h3>
+                <p className="text-cream/60 max-w-md mx-auto">
                   Thanks for reaching out. We’ll get back to you within 24 hours to schedule your
                   free audit.
                 </p>
@@ -86,17 +92,17 @@ export default function Contact() {
                   e.preventDefault()
                   setSent(true)
                 }}
-                className="bg-light rounded-2xl p-8 md:p-10 border border-slate-100 shadow-card space-y-5"
+                className="bg-ink-panel rounded-sm p-8 md:p-10 border border-white/10 space-y-5"
               >
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-[13px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+                    <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Full Name
                     </label>
                     <input required className={inputClass} placeholder="Your name" />
                   </div>
                   <div>
-                    <label className="block text-[13px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+                    <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Business Name
                     </label>
                     <input required className={inputClass} placeholder="Your business" />
@@ -105,13 +111,18 @@ export default function Contact() {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-[13px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+                    <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Email
                     </label>
-                    <input required type="email" className={inputClass} placeholder="you@company.com" />
+                    <input
+                      required
+                      type="email"
+                      className={inputClass}
+                      placeholder="you@company.com"
+                    />
                   </div>
                   <div>
-                    <label className="block text-[13px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+                    <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Phone / WhatsApp
                     </label>
                     <input className={inputClass} placeholder="+20 ..." />
@@ -119,7 +130,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-[13px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+                  <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                     Which package interests you?
                   </label>
                   <select className={inputClass} defaultValue="">
@@ -134,7 +145,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-[13px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">
+                  <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                     What are your goals?
                   </label>
                   <textarea
@@ -145,7 +156,7 @@ export default function Contact() {
                 </div>
 
                 <Button type="submit" variant="primary" icon className="w-full justify-center">
-                  Send Message
+                  Send message
                 </Button>
               </form>
             )}

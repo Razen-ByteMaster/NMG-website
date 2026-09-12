@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
-import SectionLabel from '../components/ui/SectionLabel'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 
@@ -42,22 +41,26 @@ const faqs = [
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="border-b border-slate-200 py-5">
+    <div className="border-b border-white/10 py-5">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-start justify-between gap-4 text-left"
       >
-        <span className="font-bold text-lg text-dark-900">{q}</span>
+        <span className="font-display font-medium uppercase tracking-wide text-lg text-cream">
+          {q}
+        </span>
         <span
-          className={`mt-1 w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
-            open ? 'bg-teal-nmg rotate-45 text-white' : 'bg-light text-teal-dark'
+          className={`mt-1 w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 border ${
+            open
+              ? 'bg-gold rotate-45 text-ink border-gold'
+              : 'bg-transparent text-gold border-gold/40'
           }`}
         >
           <Plus className="w-4 h-4" />
         </span>
       </button>
       {open && (
-        <p className="mt-3 text-slate-600 leading-relaxed max-w-3xl animate-fadeIn">{a}</p>
+        <p className="mt-3 text-cream/60 leading-relaxed max-w-3xl animate-fadeIn">{a}</p>
       )}
     </div>
   )
@@ -66,28 +69,30 @@ function FaqItem({ q, a }) {
 export default function FAQs() {
   return (
     <>
-      <section className="bg-dark-900 text-white py-20 md:py-24">
+      <section className="bg-ink text-cream py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <SectionLabel light>FAQs</SectionLabel>
-          <h1 className="text-4xl md:text-5xl font-black leading-tight max-w-3xl">
-            Answers, <span className="text-teal-nmg">Before</span> You Ask
+          <div className="text-[13px] font-bold tracking-[0.3em] text-gold/70 mb-3">FAQS</div>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold uppercase tracking-wide leading-tight max-w-3xl">
+            Answers, <span className="text-gold">before</span> you ask
           </h1>
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-black py-20 md:py-28 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Card className="rounded-2xl p-8 md:p-12 shadow-card border border-slate-100">
+          <Card className="rounded-sm p-8 md:p-12 bg-ink-panel border border-white/10">
             {faqs.map((f) => (
               <FaqItem key={f.q} {...f} />
             ))}
           </Card>
 
           <div className="mt-12 text-center">
-            <h2 className="text-2xl font-black mb-2">Still have questions?</h2>
-            <p className="text-slate-600 mb-6">We’d love to walk you through everything.</p>
+            <h2 className="font-display text-2xl font-semibold uppercase tracking-wide mb-2">
+              Still have questions?
+            </h2>
+            <p className="text-cream/55 mb-6">We’d love to walk you through everything.</p>
             <Button variant="primary" to="/contact" icon>
-              Contact Us
+              Contact us
             </Button>
           </div>
         </div>

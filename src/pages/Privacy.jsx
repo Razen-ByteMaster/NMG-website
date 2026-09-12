@@ -1,4 +1,3 @@
-import SectionLabel from '../components/ui/SectionLabel'
 import Card from '../components/ui/Card'
 
 const sections = [
@@ -27,21 +26,26 @@ const sections = [
 export default function Privacy() {
   return (
     <>
-      <section className="bg-dark-900 text-white py-20 md:py-24">
+      <section className="bg-ink text-cream py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <SectionLabel light>Privacy</SectionLabel>
-          <h1 className="text-4xl md:text-5xl font-black leading-tight max-w-3xl">
-            Our Commitment to <span className="text-teal-nmg">Your Privacy</span>
+          <div className="text-[13px] font-bold tracking-[0.3em] text-gold/70 mb-3">PRIVACY</div>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold uppercase tracking-wide leading-tight max-w-3xl">
+            Our commitment to <span className="text-gold">your privacy</span>
           </h1>
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+      <section className="bg-black py-20 md:py-28 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-5">
           {sections.map((s) => (
-            <Card key={s.title} className="bg-light rounded-2xl p-8 border border-slate-100 hover:border-teal-nmg shadow-card">
-              <h2 className="text-xl font-extrabold mb-3">{s.title}</h2>
-              <p className="text-slate-600 leading-relaxed">{s.body}</p>
+            <Card
+              key={s.title}
+              className="bg-ink-panel rounded-sm p-8 border border-white/10 hover:border-gold/50"
+            >
+              <h2 className="font-display text-xl font-medium uppercase tracking-wide mb-3">
+                {s.title}
+              </h2>
+              <p className="text-cream/60 leading-relaxed">{s.body}</p>
             </Card>
           ))}
         </div>

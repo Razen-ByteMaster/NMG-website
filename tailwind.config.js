@@ -4,23 +4,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        teal: {
-          nmg: '#00BFB3',
-          dark: '#008F86',
+        gold: {
+          DEFAULT: '#C9A227',
+          light: '#E5C558',
+          dark: '#8C6F1B',
         },
-        dark: {
-          900: '#0F172A',
-          800: '#1E293B',
-          700: '#334155',
+        ink: {
+          DEFAULT: '#0A0A0A',
+          panel: '#131313',
+          soft: '#1C1C1C',
         },
-        light: '#F8FAFC',
+        cream: '#F5F1E8',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['Oswald', 'Arial Narrow', 'Inter', 'sans-serif'],
       },
       boxShadow: {
-        card: '0 6px 30px -6px rgba(0, 0, 0, 0.12)',
-        cardHover: '0 16px 48px -8px rgba(0, 191, 179, 0.28)',
+        card: '0 6px 30px -6px rgba(0, 0, 0, 0.6)',
+        cardHover: '0 16px 48px -8px rgba(201, 162, 39, 0.25)',
+        goldGlow: '0 0 40px -8px rgba(201, 162, 39, 0.45)',
       },
       keyframes: {
         fadeUp: {

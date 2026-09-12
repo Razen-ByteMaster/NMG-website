@@ -7,10 +7,11 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply font-sans antialiased text-dark-900 bg-white;
+    @apply font-sans antialiased text-cream bg-ink;
   }
-  h1, h2, h3 {
-    @apply font-extrabold tracking-tight;
+  ::selection {
+    background: #C9A227;
+    color: #0A0A0A;
   }
 }
 
@@ -38,4 +39,19 @@
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Thin gold scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A227;
 }

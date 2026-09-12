@@ -5,7 +5,7 @@ import {
 import { services } from '../data/services'
 import Button from './ui/Button'
 import Card from './ui/Card'
-import SectionLabel from './ui/SectionLabel'
+import SectionHead from './ui/SectionHead'
 
 const icons = {
   TrendingUp, Search, Target, Clapperboard, Palette, PenTool, Mail,
@@ -14,32 +14,29 @@ const icons = {
 
 export default function ServicesGrid() {
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-ink py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="max-w-3xl mb-14">
-          <SectionLabel>Some of What We Do</SectionLabel>
-          <h2 className="text-3xl md:text-5xl font-black leading-tight text-balance">
-            Your Biggest Marketing <span className="text-teal-dark">Challenges</span>. Solved.
-          </h2>
-          <p className="mt-5 text-lg text-slate-600 max-w-2xl">
-            Uncover tailored strategies to overcome your most complex business hurdles.
-          </p>
-        </div>
+        <SectionHead
+          title="Capabilities"
+          sub="Your biggest marketing challenges. Solved — under one roof."
+        />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {services.map((s, i) => {
             const Icon = icons[s.icon] ?? TrendingUp
             return (
               <Card
                 key={s.title}
                 delay={(i % 4) * 80}
-                className="group bg-light rounded-2xl p-7 border border-slate-100 hover:border-teal-nmg"
+                className="group bg-ink-panel rounded-sm p-7 border border-white/10 hover:border-gold/60"
               >
-                <div className="w-12 h-12 rounded-xl bg-white shadow-card flex items-center justify-center mb-5 transition-colors duration-300 group-hover:bg-teal-nmg">
-                  <Icon className="w-6 h-6 text-teal-dark transition-colors duration-300 group-hover:text-white" />
+                <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mb-5 transition-colors duration-300 group-hover:bg-gold">
+                  <Icon className="w-6 h-6 text-gold transition-colors duration-300 group-hover:text-ink" />
                 </div>
-                <h3 className="font-extrabold text-lg mb-2">{s.title}</h3>
-                <p className="text-slate-600 text-[15px] leading-relaxed">{s.desc}</p>
+                <h3 className="font-display font-medium uppercase tracking-wide text-[17px] mb-2">
+                  {s.title}
+                </h3>
+                <p className="text-cream/55 text-[14px] leading-relaxed">{s.desc}</p>
               </Card>
             )
           })}
@@ -53,7 +50,7 @@ export default function ServicesGrid() {
               document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
             }
           >
-            See What We Offer
+            See what we offer
           </Button>
         </div>
       </div>

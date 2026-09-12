@@ -31,15 +31,15 @@ function Counter({ value, suffix }) {
 
 export default function Stats() {
   return (
-    <section className="bg-white py-14 md:py-16 border-b border-slate-100">
+    <section className="bg-black py-14 md:py-16 border-y border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="text-4xl md:text-5xl font-black text-dark-900">
+              <div className="font-display text-4xl md:text-5xl font-semibold text-gold">
                 <Counter value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-2 text-[13px] font-bold uppercase tracking-wider text-slate-500">
+              <div className="mt-2 text-[12px] font-bold uppercase tracking-[0.2em] text-cream/50">
                 {s.label}
               </div>
             </div>
