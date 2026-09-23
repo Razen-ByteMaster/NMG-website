@@ -1,18 +1,25 @@
 import { useState } from 'react'
-import { Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Mail, MapPin, Phone, Send, AlertCircle, Loader2 } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
+import {
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  EMAILJS_PUBLIC_KEY,
+  EMAILJS_TO_EMAIL,
+} from '../config/email'
 
 const info = [
   {
     icon: Mail,
     label: 'Email us',
-    value: 'hello@northwestmediagroup.com',
+    value: 'razenmoamen@gmail.com',
   },
   {
     icon: Phone,
     label: 'Call us',
-    value: '+20 100 000 0000',
+    value: '+20 128 084 7899',
   },
   {
     icon: MapPin,
@@ -24,8 +31,53 @@ const info = [
 const inputClass =
   'w-full bg-ink border border-white/15 rounded-sm px-4 py-3.5 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all text-[15px] text-cream placeholder:text-cream/30'
 
+const isConfigured =
+  EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID_HERE' &&
+  EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID_HERE' &&
+  EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY_HERE'
+
 export default function Contact() {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!isConfigured) {
+      setError(
+        'The contact form is not configured yet. Please add your EmailJS keys in src/config/email.js (see README).'
+      )
+      setStatus('error')
+      return
+    }
+
+    const form = e.target
+    const data = new FormData(form)
+
+    const params = {
+      from_name: data.get('fullName') || '',
+      business_name: data.get('businessName') || '',
+      reply_to: data.get('email') || '',
+      phone: data.get('phone') || '',
+      package_name: data.get('package') || '',
+      goals: data.get('goals') || '',
+      to_email: EMAILJS_TO_EMAIL,
+    }
+
+    setStatus('sending')
+    setError('')
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params, {
+        publicKey: EMAILJS_PUBLIC_KEY,
+      })
+      setStatus('sent')
+    } catch (err) {
+      console.error('EmailJS send failed:', err)
+      setError("We couldn't send your message right now. Please try again in a moment.")
+      setStatus('error')
+    }
+  }
 
   return (
     <>
@@ -73,7 +125,7 @@ export default function Contact() {
           </div>
 
           <div className="lg:col-span-3">
-            {sent ? (
+            {status === 'sent' ? (
               <Card className="bg-ink-panel rounded-sm p-12 border border-gold/30 text-center">
                 <div className="w-16 h-16 mx-auto rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center mb-6">
                   <Send className="w-8 h-8 text-gold" />
@@ -88,10 +140,7 @@ export default function Contact() {
               </Card>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  setSent(true)
-                }}
+                onSubmit={handleSubmit}
                 className="bg-ink-panel rounded-sm p-8 md:p-10 border border-white/10 space-y-5"
               >
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -99,13 +148,23 @@ export default function Contact() {
                     <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Full Name
                     </label>
-                    <input required className={inputClass} placeholder="Your name" />
+                    <input
+                      required
+                      name="fullName"
+                      className={inputClass}
+                      placeholder="Your name"
+                    />
                   </div>
                   <div>
                     <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Business Name
                     </label>
-                    <input required className={inputClass} placeholder="Your business" />
+                    <input
+                      required
+                      name="businessName"
+                      className={inputClass}
+                      placeholder="Your business"
+                    />
                   </div>
                 </div>
 
@@ -117,6 +176,7 @@ export default function Contact() {
                     <input
                       required
                       type="email"
+                      name="email"
                       className={inputClass}
                       placeholder="you@company.com"
                     />
@@ -125,7 +185,7 @@ export default function Contact() {
                     <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                       Phone / WhatsApp
                     </label>
-                    <input className={inputClass} placeholder="+20 ..." />
+                    <input name="phone" className={inputClass} placeholder="+20 ..." />
                   </div>
                 </div>
 
@@ -133,7 +193,7 @@ export default function Contact() {
                   <label className="block text-[12px] font-bold uppercase tracking-[0.2em] text-cream/40 mb-2">
                     Which package interests you?
                   </label>
-                  <select className={inputClass} defaultValue="">
+                  <select name="package" className={inputClass} defaultValue="">
                     <option value="" disabled>
                       Select a package
                     </option>
@@ -149,14 +209,35 @@ export default function Contact() {
                     What are your goals?
                   </label>
                   <textarea
+                    name="goals"
                     rows={5}
                     className={`${inputClass} resize-none`}
                     placeholder="Tell us a bit about your business and what you want to achieve..."
                   />
                 </div>
 
-                <Button type="submit" variant="primary" icon className="w-full justify-center">
-                  Send message
+                {status === 'error' && (
+                  <div className="flex items-start gap-3 rounded-sm bg-red-500/10 border border-red-500/40 px-4 py-3.5 text-[14px] text-red-200">
+                    <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  icon
+                  className="w-full justify-center"
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    'Send message'
+                  )}
                 </Button>
               </form>
             )}
